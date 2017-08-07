@@ -60,8 +60,8 @@ stream(State=#state{reqId=ReqId, httpcPid=Pid}) ->
       {<<>>, State}
   end.
 
-event_fun({entry, Entry}, State) ->
-  gen_event:notify(example_event_man, {entry, Entry}),
+event_fun({entry, Entry}, State=#state{url=Url}) ->
+  gen_event:notify(example_event_man, {entry, Entry, Url}),
   State;
 event_fun({feed, Feed}, State) ->
   gen_event:notify(example_event_man, {feed, Feed}),

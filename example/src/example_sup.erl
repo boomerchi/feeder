@@ -7,14 +7,21 @@
 start_link() ->
   supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
-child_spec() -> {
-  example_worker,
-  {example_parse, start_link, []},
-  temporary,
-  3000,
-  worker,
-  [example_parse]
+ex_parser_sup() -> #{
+  id => ex_parser_sup,
+  start => {ex_parser_sup, start_link, []},
+  restart => transient,
+  type => supervisor
+}.
+
+ex_event_man() -> #{
+  id => example_event_man,
+  start => {gen_event, start_link, [{local, example_event_man}]},
+  modules => dynamic
 }.
 
 init([]) ->
-  {ok, {{simple_one_for_one, 1, 1}, [child_spec()]}}.
+  {ok, {{one_for_one, 1, 5}, [
+    ex_parser_sup(),
+    ex_event_man()
+  ]}}.

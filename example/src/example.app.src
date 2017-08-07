@@ -5,8 +5,9 @@
   {modules, [
     example,
     example_sup,
+    ex_parser_sup,
     example_parse,
-    example_logger
+    ex_logger
   ]},
   {registered, [example_sup, example_event_man]},
   {applications, [
