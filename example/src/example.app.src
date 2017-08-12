@@ -16,10 +16,12 @@
     ex_sup
   ]},
   {applications, [
-    kernel,
-    stdlib,
+    feeder,
     inets,
-    ssl
+    kernel,
+    ssl,
+    stdlib,
+    xmerl
   ]},
   {mod, {example_app, []}},
   {env, []}
