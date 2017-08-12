@@ -1,4 +1,4 @@
--module(ex_parser_sup).
+-module(ex_parse_sup).
 -behaviour(supervisor).
 
 -export([start_link/0]).
@@ -7,15 +7,13 @@
 start_link() ->
   supervisor:start_link({local, ?MODULE}, ?MODULE, []).
 
-%% TODO: Rename example_parse to ex_parser
-
 parser() -> #{
-  id => ex_parser,
-  start => {example_parse, start_link, []},
+  id => ex_parse,
+  start => {ex_parse, start_link, []},
   restart => temporary,
   shutdown => 3000,
   type => worker,
-  modules => [example_parse]
+  modules => [ex_parse]
 }.
 
 init([]) ->

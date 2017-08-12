@@ -3,13 +3,18 @@
   {vsn, "2.0.0"},
   {id, "git"},
   {modules, [
+    ex_logger,
+    ex_parse,
+    ex_parse_sup,
+    ex_sup,
     example,
-    example_sup,
-    ex_parser_sup,
-    example_parse,
-    ex_logger
+    example_app
   ]},
-  {registered, [example_sup, example_event_man]},
+  {registered, [
+    ex_event_man,
+    ex_parse_sup,
+    ex_sup
+  ]},
   {applications, [
     kernel,
     stdlib,
